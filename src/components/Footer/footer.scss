@@ -1,0 +1,18 @@
+@keyframes pulse-grow {
+  0% {
+    transform: scale(1);
+    background-color: #f87171; /* đỏ nhạt */
+  }
+  50% {
+    transform: scale(1.1);
+    background-color: #ef4444; /* đỏ đậm hơn */
+  }
+  100% {
+    transform: scale(1);
+    background-color: #f87171;
+  }
+}
+
+.hover-pulse:hover {
+  animation: pulse-grow 1s ease-in-out infinite;
+}

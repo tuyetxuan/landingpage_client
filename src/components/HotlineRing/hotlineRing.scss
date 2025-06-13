@@ -1,0 +1,118 @@
+@keyframes phonering-alo-circle-anim {
+  0% {
+    transform: scale(0.5) skew(1deg);
+    opacity: 0.1;
+  }
+  30% {
+    transform: scale(0.7) skew(1deg);
+    opacity: 0.5;
+  }
+  100% {
+    transform: scale(1) skew(1deg);
+    opacity: 0.1;
+  }
+}
+
+@keyframes phonering-alo-circle-fill-anim {
+  0%, 100% {
+    transform: scale(0.7) skew(1deg);
+    opacity: 0.6;
+  }
+  50% {
+    transform: scale(1) skew(1deg);
+    opacity: 0.6;
+  }
+}
+
+@keyframes phonering-alo-circle-img-anim {
+  0%, 100% {
+    transform: rotate(0) scale(1) skew(1deg);
+  }
+  10% {
+    transform: rotate(-25deg) scale(1) skew(1deg);
+  }
+  20% {
+    transform: rotate(25deg) scale(1) skew(1deg);
+  }
+  30% {
+    transform: rotate(-25deg) scale(1) skew(1deg);
+  }
+  40% {
+    transform: rotate(25deg) scale(1) skew(1deg);
+  }
+  50% {
+    transform: rotate(0) scale(1) skew(1deg);
+  }
+}
+
+.zalo-ring-circle,
+.hotline-phone-ring-circle {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  border: 2px solid #00aaff;
+  position: absolute;
+  top: 0;
+  left: 0;
+  animation: phonering-alo-circle-anim 1.2s infinite ease-in-out;
+}
+
+.zalo-ring-circle-fill,
+.hotline-phone-ring-circle-fill {
+  width: 60px;
+  height: 60px;
+  background-color: #00aaff;
+  opacity: 0.6;
+  border-radius: 50%;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  animation: phonering-alo-circle-fill-anim 1.2s infinite ease-in-out;
+}
+
+.hotline-phone-ring-circle {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  border: 2px solid #AE0A09;
+  position: absolute;
+  top: 0;
+  left: 0;
+  animation: phonering-alo-circle-anim 1.2s infinite ease-in-out;
+}
+
+.hotline-phone-ring-circle-fill {
+  width: 60px;
+  height: 60px;
+  background-color: #AE0A09;
+  opacity: 0.6;
+  border-radius: 50%;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  animation: phonering-alo-circle-fill-anim 1.2s infinite ease-in-out;
+}
+
+.hotline-phone-ring-img-circle {
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  border-radius: 50%;
+  background: #AE0A09;
+  padding: 10px;
+  animation: phonering-alo-circle-img-anim 1.2s infinite ease-in-out;
+}
+
+.zalo-ring-img-circle {
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  border-radius: 50%;
+  background: #ffffff;
+  padding: 10px;
+  animation: phonering-alo-circle-img-anim 1.2s infinite ease-in-out;
+}
