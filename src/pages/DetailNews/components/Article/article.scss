@@ -1,0 +1,167 @@
+@import url('https://fonts.googleapis.com/css2?family=Anaheim:wght@400..800&family=Concert+One&family=Inter+Tight:ital,wght@0,100..900;1,100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Lobster&family=Pacifico&family=Roboto:ital,wght@0,100..900;1,100..900&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
+
+$primary-color: #007bff;
+$font-family-base: "Inter", sans-serif;
+$heading-font-weight: 600;
+
+
+.post_news * {
+  font-family: "Inter Tight", sans-serif !important;
+}
+
+.post_news-main {
+  * {
+    font-family: "Inter", sans-serif !important;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: $font-family-base !important;
+    font-weight: 800 !important;
+    line-height: 2 !important;
+    padding: 0 !important;
+    color: $primary-color !important;
+    font-size: 32px !important;
+    text-align: left !important;
+  }
+
+  p {
+    font-family: "Inter Tight", sans-serif !important;
+    font-size: 18px !important;
+    line-height: 1.7 !important;
+    color: #333 !important;
+    text-align: justify !important;
+    margin: 18px 0 !important;
+  }
+
+  img {
+    width: 100% !important;
+    height: auto !important;
+    margin: 25px 0 !important;
+    border-radius: 10px !important;
+  }
+
+  ul {
+    font-size: 18px !important;
+    list-style-type: none !important;
+    padding-left: 20px !important;
+    margin: 15px 0 !important;
+    text-align: justify !important;
+    margin-left: 20px !important;
+    list-style-position: outside;
+
+    li {
+      font-family: "Inter Tight", sans-serif !important;
+      font-size: 18px !important;
+      line-height: 1.7 !important;
+      color: #333 !important;
+      margin-bottom: 10px !important;
+      position: relative;
+    }
+
+    li::before {
+      content: "•" !important;
+      color: $primary-color !important;
+      position: absolute !important;
+      top: -5px !important;
+      left: -30px !important;
+      font-size: 24px !important;
+      line-height: 1.7 !important;
+    }
+  }
+
+  a {
+    cursor: pointer !important;
+    font-size: 18px !important;
+    color: $primary-color !important;
+    text-decoration: underline !important;
+    font-weight: 700 !important;
+    text-align: inherit !important;
+    font-style: italic !important;
+    transition: color 0.3s ease !important;
+
+    &:hover {
+      text-decoration: underline !important;
+      color: darken($primary-color, 30%) !important;
+    }
+  }
+
+  table {
+    width: 100% !important;
+    margin: 25px 0 !important;
+    text-align: justify !important;
+    border-collapse: separate !important;
+    border-spacing: 0 !important;
+    border: 1px solid #ccc !important;
+    border-radius: 10px !important;
+    overflow: hidden !important;
+
+    tr:nth-child(even) {
+      background-color: #f2f2f2 !important;
+    }
+
+    th:first-child {
+      border-top-left-radius: 10px;
+    }
+
+    th:last-child {
+      border-top-right-radius: 10px;
+    }
+
+    tr:last-child td:first-child {
+      border-bottom-left-radius: 10px;
+    }
+
+    tr:last-child td:last-child {
+      border-bottom-right-radius: 10px;
+    }
+
+    th, td {
+      padding: 12px !important;
+      border: 1px solid #ddd !important;
+      font-size: 18px !important;
+      color: #333 !important;
+    }
+
+    th {
+      background-color: $primary-color !important;
+      color: white !important;
+      font-weight: bold !important;
+      text-align: center !important;
+    }
+
+    tr:nth-child(even) {
+      background-color: #f2f2f2 !important;
+    }
+  }
+
+  blockquote {
+    font-family: "Inter Tight", sans-serif !important;
+    font-size: 20px !important;
+    line-height: 1.7 !important;
+    color: #555 !important;
+    border-left: 5px solid $primary-color !important;
+    margin: 22px 0 !important;
+    font-style: italic !important;
+    text-align: justify !important;
+    background-color: rgb(23, 129, 245, .2) !important;
+    border-radius: 10px !important;
+    padding: 10px 20px !important;
+    cursor: pointer !important;
+
+    p {
+      margin: 0 !important;
+      padding: 10px 0 !important;
+    }
+
+    &:hover {
+      background-color: rgb(23, 129, 245, .3) !important;
+      border-left-color: darken($primary-color, 10%) !important;
+    }
+  }
+
+  strong {
+    font-weight: 700 !important;
+    color: $primary-color !important;
+  }
+
+}

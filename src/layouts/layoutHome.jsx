@@ -1,15 +1,15 @@
 import Footer from "@components/Footer/footer";
 import Header from "@components/Header/Header";
-import { Outlet } from "react-router-dom";
+import {Outlet} from "react-router-dom";
 
 const Home = () => {
-  return (
-    <>
-      <Header />
-      <Outlet />
-      <Footer />
-    </>
-  );
+	return (
+		<div className="relative">
+			<Header/>
+			<Outlet/>
+			<Footer/>
+		</div>
+	);
 };
 
 export default Home;

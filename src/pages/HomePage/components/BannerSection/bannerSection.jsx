@@ -1,6 +1,7 @@
 import React from 'react';
 import './BannerSection.scss';
 import {Icon} from "@iconify/react";
+import {Particles} from "@components/magicui/particles.jsx";
 
 const BannerSection = () => {
 	return (
@@ -10,11 +11,18 @@ const BannerSection = () => {
 			         backgroundSize: 'cover',
 			         backgroundPosition: 'center',
 			         backgroundRepeat: 'no-repeat',
-			         maxHeight: '590px',
-			         minHeight: '590px'
+			         maxHeight: '600px',
+			         minHeight: '600px'
 		         }}>
+			<Particles
+				className="absolute inset-0 z-0"
+				quantity={900}
+				ease={10}
+				color={'#ffffff'}
+				refresh
+			/>
 			<div className="banner-overlay absolute inset-0  opacity-90">
-				<div className="max-w-container relative mx-auto flex items-center justify-between h-full">
+				<div className="max-w-container relative mx-auto flex items-center justify-between h-full mt-[70px]">
 					<div className="banner-content text-white z-10">
 						<h1 className="text-6xl font-bold">DỊCH VỤ THIẾT KẾ WEB LANDING PAGE CHUYÊN NGHIỆP</h1>
 						<p className="mt-4 text-lg">

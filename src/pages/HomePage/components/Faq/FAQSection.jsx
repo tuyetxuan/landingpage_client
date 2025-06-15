@@ -58,21 +58,35 @@ const FAQSection = () => {
 	return (
 		<div className="w-full px-6 md:px-20 py-15 relative">
 			<div className="max-w-container mx-auto relative z-10">
-				<div className="grid md:grid-cols-2 gap-10 items-start">
+				<div className="grid md:grid-cols-[30%_70%] gap-10 items-start">
 					<div className="col-span-1">
 						<h2 className="text-3xl md:text-4xl font-bold mb-4">
-							Câu hỏi thường gặp khi <span className="text-blue">thiết kế website</span>
+							CÂU HỎI THƯỜNG GẶP KHI <span className="text-blue">THIẾT KẾ WEBSITE</span>
 						</h2>
-						<div className="mt-6 m-auto">
-							<img src="https://mona.media/template/assets/images/thiet-ke-landing-page/TheImmortalMon_Mona-1920.avif" alt="FAQ Icon" className="w-[60%] h-auto"/>
+						<div className="mt-6">
+							<img
+								src="https://mona.media/template/assets/images/thiet-ke-landing-page/TheImmortalMon_Mona-1920.avif"
+								alt="FAQ Icon"
+								className="w-full max-w-[300px] h-auto"
+							/>
 						</div>
 					</div>
 					
 					<div className="col-span-1">
 						<div>
-							<Collapse bordered={false} expandIcon={customExpandIcon} expandIconPosition="right" className="bg-transparent" defaultActiveKey={['col1-0']} style={{backgroundColor: 'transparent'}}>
+							<Collapse
+								bordered={false}
+								expandIcon={customExpandIcon}
+								expandIconPosition="right"
+								className="bg-transparent"
+								defaultActiveKey={['col1-0']}
+								style={{backgroundColor: 'transparent'}}
+							>
 								{faqData?.map((item, index) => (
-									<Panel header={<span className="font-semibold text-blue">{item.question}</span>} key={`col1-${index}`}>
+									<Panel
+										header={<span className="font-semibold text-blue text-xl">{item.question}</span>}
+										key={`col1-${index}`}
+									>
 										{item.answer}
 									</Panel>
 								))}
@@ -80,7 +94,11 @@ const FAQSection = () => {
 						</div>
 					</div>
 				</div>
-				<img src={faq} alt="faq" className="w-[13%] absolute top-[-80px] right-[-50px]  rotate-[-10deg] animate-bounce-smooth"/>
+				<img
+					src={faq}
+					alt="faq"
+					className="w-[13%] absolute top-[-80px] right-[-50px] rotate-[-10deg] animate-bounce-smooth"
+				/>
 			</div>
 		</div>
 	);
