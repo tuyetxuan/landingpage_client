@@ -1,23 +1,26 @@
 import {Icon} from "@iconify/react";
 import Logo from "@icons/FAVICON.png";
 import {Button} from "antd";
-import React, {useState} from "react";
+import {useState} from 'react';
 import {NavLink, useLocation} from "react-router-dom";
 import "./header.scss";
+import ConsultationPopup from "@components/Consultation/consultationPopup.jsx";
 
 const Header = () => {
 	const [isFocused, setIsFocused] = useState(false);
-	const historySearch = ["Bánh mì", "Pizza", "Cái lò nướng", "Bánh kem"];
+	const [open, setOpen] = useState(true)
 	const location = useLocation();
 	return (
-		<header className="bg-background-primary sticky top-0 z-50 w-full shadow-xl">
+		<header
+			className={`fixed top-[10px] z-50 w-[70%] left-1/2 -translate-x-1/2 rounded-xl backdrop-blur-md shadow-xl transition-colors duration-300 bg-background-primary/80`}
+		>
 			<div className="header max-w-header m-auto">
 				<div className="header__logo">
 					<a href="/">
 						<img src={Logo} alt="Logo" className="w-[100%] cursor-pointer"/>
 					</a>
 					<p>
-						LANGING PAGE
+						LANDING PAGE
 					</p>
 				</div>
 				<nav className="nav">
@@ -94,6 +97,7 @@ const Header = () => {
 					</div>
 				</div>
 			</div>
+			<ConsultationPopup open={open} setOpen={setOpen}/>
 		</header>
 	);
 };

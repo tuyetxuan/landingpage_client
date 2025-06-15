@@ -26,7 +26,7 @@ const ServiceSection = () => {
 	];
 	
 	return (
-		<div className="max-w-container mx-auto py-15 mt-[100px]">
+		<div className="max-w-container mx-auto py-15">
 			<div className="max-w-3xl mx-auto text-center">
 				<h2 className="text-4xl font-bold text-black lg:text-5xl sm:text-5xl">DỊCH VỤ ĐANG CUNG CẤP</h2>
 				<p className="mt-4 text-lg leading-relaxed text-gray-600">

@@ -38,6 +38,7 @@ export default {
 			maxWidth: {
 				container: "1160px",
 				header: "1260px",
+				headerFix: "1360px",
 			},
 			animation: {
 				"gradient-x": "gradient-x 3s ease infinite",
@@ -59,5 +60,6 @@ export default {
 			},
 		},
 	},
-	plugins: [],
+	plugins: [require('tailwind-scrollbar'), require('@tailwindcss/forms'),
+		require('@tailwindcss/typography'),],
 };
