@@ -1,12 +1,50 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import LogoDK from '@images/img-dangky.png';
 import LogoTB from '@images/img-thongbao.png';
-import "./footer.scss"
-
+import "./footer.scss";
 import {FaFacebookF, FaInstagram, FaTwitter, FaYoutube} from 'react-icons/fa';
-
+import {useGetWebSettingsQuery} from "@features/services/webSettingsSlice.js";
 
 const Footer = () => {
+	const {data: webSettings = {}, isLoading} = useGetWebSettingsQuery();
+	
+	const [settings, setSettings] = useState({
+		websiteName: 'Chưa có thông tin',
+		hotline: [],
+		email: 'Chưa có thông tin',
+		address: 'Chưa có thông tin',
+		socialLinks: {facebook: '', instagram: '', twitter: '', youtube: ''},
+		websiteUrl: '',
+	});
+	
+	useEffect(() => {
+		if (webSettings) {
+			const {
+				website_name = 'Chưa có thông tin',
+				website_url = '',
+				contact_info = {},
+			} = webSettings;
+			
+			const {
+				hotline = [],
+				email = 'Chưa có thông tin',
+				address = 'Chưa có thông tin',
+				social_links = {facebook: '', instagram: '', twitter: '', youtube: ''},
+			} = contact_info;
+			
+			setSettings({
+				websiteName: website_name,
+				hotline,
+				email,
+				address,
+				socialLinks: social_links,
+				websiteUrl: website_url,
+			});
+		}
+	}, [webSettings]);
+	
+	const {websiteName, hotline, email, address, socialLinks, websiteUrl} = settings;
+	
 	return (
 		<>
 			<div
@@ -17,33 +55,33 @@ const Footer = () => {
 					Tư vấn miễn phí
 				</h2>
 				<p className="text-sm md:text-base font-light mb-6">
-					Bạn cần sự hỗ trợ hoặc tư vấn thêm về thông tin sản phẩm dịch vụ hãy liên hệ ngay với <strong>CCO MEDIA</strong>
+					Bạn cần sự hỗ trợ hoặc tư vấn thêm về thông tin sản phẩm dịch vụ hãy liên hệ ngay với <strong>{websiteName}</strong>
 				</p>
 				<button className="bg-background-yellow text-black px-6 py-2 rounded-full font-semibold cursor-pointer transition hover-pulse">
-					HOTLINE/ZALO: 0902 813 410
+					HOTLINE/ZALO: {hotline[0] || 'Chưa có thông tin'}
 				</button>
 			</div>
 			<footer className="text-white bg-black max-w-full text-sm">
-				<div className="max-w-container mx-auto flex flex-col items-center justify-between gap-4 md:flex-row p-4 ">
+				<div className="max-w-header mx-auto flex flex-col items-center justify-between gap-4 md:flex-row p-4">
 					<div className="bg-black text-white py-1 px-4 md:px-16">
-						<div className="grid grid-cols-1 md:grid-cols-5 gap-8 text-sm">
+						<div className="grid grid-cols-1 md:grid-cols-5 gap-5 text-sm">
 							<div>
-								<h6 className="font-bold mb-2">LIÊN HỆ VỚI CCO MEDIA</h6>
-								<p>HOTLINE 1: 0902 813 410</p>
-								<p>HOTLINE 2: 094 1945858</p>
-								<p>HOTLINE 3: 0902 884 990</p>
+								<h6 className="font-bold mb-2">LIÊN HỆ VỚI {websiteName}</h6>
+								{hotline.map((line, index) => (
+									<p key={index}>HOTLINE {index + 1}: {line}</p>
+								))}
 								<p>
 									EMAIL:{' '}
-									<a href="mailto:info@ccomedia.vn" className="text-blue">
-										info@ccomedia.vn
+									<a href={`mailto:${email}`} className="text-blue">
+										{email}
 									</a>
 								</p>
-								<p>154 Phạm Văn Chiêu, Phường 9, Gò Vấp</p>
+								<p>{address}</p>
 								<div className="flex space-x-3 mt-2 text-xl">
-									<a href="#"><FaFacebookF/></a>
-									<a href="#"><FaInstagram/></a>
-									<a href="#"><FaTwitter/></a>
-									<a href="#"><FaYoutube/></a>
+									<a href={socialLinks.facebook}><FaFacebookF/></a>
+									<a href={socialLinks.instagram}><FaInstagram/></a>
+									<a href={socialLinks.twitter}><FaTwitter/></a>
+									<a href={socialLinks.youtube}><FaYoutube/></a>
 								</div>
 							</div>
 							<div>
@@ -81,14 +119,14 @@ const Footer = () => {
 									<a href="javascript:void(0)">
 										<img
 											src={LogoDK}
-											alt=" Đăng ký"
+											alt="Đăng ký"
 											className="mx-auto h-20 object-contain"
 										/>
 									</a>
 									<a href="javascript:void(0)">
 										<img
 											src={LogoTB}
-											alt=" Thông báo"
+											alt="Thông báo"
 											className="mx-auto h-20 object-contain"
 										/>
 									</a>
@@ -99,14 +137,14 @@ const Footer = () => {
 				</div>
 				<div className="max-w-full py-4 text-sm">
 					<div className="max-w-container mx-auto mb-2 text-center">
-						© {new Date().getFullYear()} CCO MEDIA. All rights reserved.
+						© {new Date().getFullYear()} {websiteName}. All rights reserved.
 					</div>
 					<div
 						className="max-w-container mx-auto flex flex-wrap justify-center gap-4 text-center"
 						style={{color: "#A3A3A3"}}
 					>
 						<a href="javascript:void(0)" className="hover:underline">
-							Dich vụ thiết kế web
+							Dịch vụ thiết kế web
 						</a>
 						<a href="javascript:void(0)" className="hover:underline">
 							Điều khoản sử dụng
@@ -124,26 +162,23 @@ const Footer = () => {
 						<p>
 							Thiết kế và phát triển bởi{' '}
 							<a
-								href="https://ccomedia.vn"
+								href={websiteUrl}
 								className="text-blue hover:underline"
 							>
-								CCO MEDIA
+								{websiteName}
 							</a>
 						</p>
+						<p>Địa chỉ: {address}</p>
 						<p>
-							Địa chỉ: 154 Phạm Văn Chiêu, Phường 9, Gò Vấp, TP.HCM
-						</p>
-						<p>
-							Hotline: 0902 813 410 - Email:
-							<a href="mailto:info@ccomedia.vn" className="text-blue hover:underline">
-								info@ccomedia.vn
+							Hotline: {hotline[0] || 'Chưa có thông tin'} - Email:
+							<a href={`mailto:${email}`} className="text-blue hover:underline">
+								{email}
 							</a>
 						</p>
 					</div>
 				</div>
 			</footer>
 		</>
-	
 	);
 };
 

@@ -1,5 +1,6 @@
-import {Button, ConfigProvider, Input, Select, Space} from "antd";
-import {SearchOutlined} from "@ant-design/icons";
+import React, {memo, useEffect, useState} from 'react';
+import {Button, ConfigProvider, Input, Select, Space} from 'antd';
+import {SearchOutlined} from '@ant-design/icons';
 import {createStyles} from 'antd-style';
 
 const useStyle = createStyles(({prefixCls, css}) => ({
@@ -35,43 +36,96 @@ const prefix = (
 	/>
 );
 
-const {Search} = Input;
-
 const {Option} = Select;
 
-export default function WebsiteSearch() {
+const WebsiteSearch = ({categories, onSearch, onCategoryChange, defaultKeyword, defaultCategoryId}) => {
 	const {styles} = useStyle();
+	const [keyword, setKeyword] = useState(defaultKeyword || '');
+	const [selectedCategory, setSelectedCategory] = useState(() => {
+		if (!defaultCategoryId) return {value: 'all', label: 'Tất cả danh mục'};
+		const category = categories.find((cat) => cat.id === parseInt(defaultCategoryId));
+		return category ? {value: category.id, label: category.name} : {value: 'all', label: 'Tất cả danh mục'};
+	});
+	
+	useEffect(() => {
+		setKeyword(defaultKeyword || '');
+		if (defaultCategoryId !== selectedCategory.value) {
+			const category = categories.find((cat) => cat.id === parseInt(defaultCategoryId));
+			setSelectedCategory(
+				category ? {value: category.id, label: category.name} : {value: 'all', label: 'Tất cả danh mục'}
+			);
+		}
+	}, [defaultKeyword, defaultCategoryId, categories]);
+	
+	const handleKeywordChange = (e) => {
+		setKeyword(e.target.value);
+	};
+	
+	const handleSearchSubmit = () => {
+		onSearch(
+			selectedCategory.value === 'all' ? null : selectedCategory.value,
+			keyword.trim()
+		);
+	};
+	
+	const handleCategorySelect = (option) => {
+		setSelectedCategory(option);
+		onCategoryChange(
+			option.value === 'all' ? null : parseInt(option.value),
+			keyword.trim()
+		);
+	};
+	
 	return (
-		<div className="w-full bg-white py-10  text-center">
+		<div className="w-full bg-white py-10 text-center">
 			<div className="flex justify-center items-center mb-6">
 				<h2 className="text-4xl font-bold text-gray-800">
-					Danh sách tất cả{" "}
+					Danh sách tất cả{' '}
 					<span className="bg-blue text-white px-3 py-1 rounded-md">
-						MẪU WEBSITE
-					</span>
+            MẪU WEBSITE
+          </span>
 				</h2>
 			</div>
 			<div>
 				<Space.Compact size="large" className="w-full h-[60px]">
-					<Input size="large" defaultValue="" placeholder="Tìm kiếm mẫu website..." prefix={prefix}/>
+					<Input
+						size="large"
+						value={keyword}
+						onChange={handleKeywordChange}
+						onPressEnter={handleSearchSubmit}
+						placeholder="Tìm kiếm mẫu website..."
+						prefix={prefix}
+					/>
 					<Select
 						size="large"
 						className="h-[60px]"
-						defaultValue="all"
-						style={{width: 300, minHeight: 60, borderColor: "#1781F5"}}
-						onChange={(value) => console.log(value)}
+						value={selectedCategory}
+						style={{width: 300, minHeight: 60, borderColor: '#1781F5'}}
+						onChange={handleCategorySelect}
+						labelInValue
 					>
-						<Option value="all">Tất cả danh mục</Option>
-						<Option value="landing-page">Landing Page</Option>
-						<Option value="ecommerce">E-commerce</Option>
-						<Option value="blog">Blog</Option>
+						<Option value="all" label="Tất cả danh mục">
+							Tất cả danh mục
+						</Option>
+						{categories.map((category) => (
+							<Option key={category.id} value={category.id} label={category.name}>
+								{category.name}
+							</Option>
+						))}
 					</Select>
 					<ConfigProvider
 						button={{
 							className: styles.linearGradientButton,
 						}}
 					>
-						<Button size="large" type="primary" icon={<SearchOutlined/>} className="h-[60px]" style={{minHeight: 60}}>
+						<Button
+							size="large"
+							type="primary"
+							icon={<SearchOutlined/>}
+							className="h-[60px]"
+							style={{minHeight: 60}}
+							onClick={handleSearchSubmit}
+						>
 							Tìm kiếm mẫu
 						</Button>
 					</ConfigProvider>
@@ -79,4 +133,6 @@ export default function WebsiteSearch() {
 			</div>
 		</div>
 	);
-}
+};
+
+export default memo(WebsiteSearch);

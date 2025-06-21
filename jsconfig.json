@@ -31,8 +31,8 @@
       "@hooks/*": [
         "src/hooks/*"
       ],
-      "@slices/*": [
-        "src/redux/slices/*"
+      "@stores/*": [
+        "src/redux/*"
       ],
       "@styles/*": [
         "src/styles/*"
@@ -46,8 +46,8 @@
       "@icons/*": [
         "src/assets/icons/*"
       ],
-      "@redux/*": [
-        "src/redux/*"
+      "@features/*": [
+        "src/features/*"
       ]
     }
   },

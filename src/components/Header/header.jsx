@@ -5,11 +5,13 @@ import {useState} from 'react';
 import {NavLink, useLocation} from "react-router-dom";
 import "./header.scss";
 import ConsultationPopup from "@components/Consultation/consultationPopup.jsx";
+import {useGetWebSettingsQuery} from "@features/services/webSettingsSlice.js";
 
 const Header = () => {
 	const [isFocused, setIsFocused] = useState(false);
-	const [open, setOpen] = useState(true)
+	const [open, setOpen] = useState(false)
 	const location = useLocation();
+	const {data: webSettings = [], isLoading} = useGetWebSettingsQuery();
 	return (
 		<header
 			className={`fixed top-[10px] z-50 w-[70%] left-1/2 -translate-x-1/2 rounded-xl backdrop-blur-md shadow-xl transition-colors duration-300 bg-background-primary/80`}
@@ -80,9 +82,11 @@ const Header = () => {
 					<div className="flex flex-col leading-tight">
 						<Button
 							variant="solid"
-							href="/dang-ky"
 							size="large"
 							style={{gap: 0, color: "#1781F5", backgroundColor: "#EBEFFF", minHeight: "50px"}}
+							onClick={() => {
+								setOpen(!open);
+							}}
 							icon={
 								<Icon
 									icon="healthicons:call-centre"

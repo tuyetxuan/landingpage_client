@@ -23,9 +23,10 @@ const ROUTER_PATH = {
 	PRICING: "/bang-gia",
 	SERVICE: "/dich-vu",
 	COLLAB: "/hop-tac",
+	CATEGORY_NEWS: "/tin-tuc/:category_slug",
 	NEWS: "/tin-tuc",
 	CONTACT: "/lien-he",
-	DETAIL_ARTICLE: "/tin-tuc/:slug",
+	DETAIL_ARTICLE: "/xem-tin/:slug",
 };
 
 const PublicRoutes = [
@@ -139,6 +140,27 @@ const PublicRoutes = [
 						}
 					>
 						<ContactInfo/>
+					</Suspense>
+				),
+			},
+			{
+				path: ROUTER_PATH.CATEGORY_NEWS,
+				element: (
+					<Suspense
+						fallback={
+							<div
+								style={{
+									display: "flex",
+									justifyContent: "center",
+									alignItems: "center",
+									minHeight: "100vh",
+								}}
+							>
+								<SpinnerSmall/>
+							</div>
+						}
+					>
+						<News/>
 					</Suspense>
 				),
 			},

@@ -22,6 +22,11 @@ body {
     font-family: "Rubik", sans-serif;
 }
 
+html body[data-scroll-locked] {
+    overflow: visible !important;
+    margin-right: 0 !important;
+}
+
 @theme inline {
     --radius-sm: calc(var(--radius) - 4px);
     --radius-md: calc(var(--radius) - 2px);

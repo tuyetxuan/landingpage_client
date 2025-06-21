@@ -2,12 +2,13 @@ import {Button} from "antd";
 import {ArrowRightOutlined, EyeOutlined} from "@ant-design/icons";
 import React from "react";
 
-export default function WebsiteCard() {
+export default function WebsiteCard({service}) {
+	const {id, code, name, image_url, description, link_page, created_at, category, author} = service;
 	return (
 		<div className="relative group rounded-xl overflow-hidden shadow-lg w-full max-w-[300px] mx-auto bg-white cursor-pointer">
 			<div className="relative h-[420px] overflow-hidden">
 				<img
-					src="https://w.ladicdn.com/s700x800/57b167caca57d39c18a1c57e/bat-dong-san-05-20250410073550-0ha51.jpg"
+					src={image_url || "https://placehold.co/600x400"}
 					alt="Web demo"
 					className="w-full h-full object-cover"
 				/>
@@ -16,6 +17,7 @@ export default function WebsiteCard() {
 					<Button
 						type="primary"
 						size="large"
+						href={link_page || "#"}
 						icon={<EyeOutlined/>}
 						className="bg-orange-500 hover:bg-orange-600 text-white px-6 font-semibold"
 					>
@@ -23,6 +25,7 @@ export default function WebsiteCard() {
 					</Button>
 					<Button
 						size="large"
+						href={link_page || "#"}
 						icon={<ArrowRightOutlined/>}
 						className="bg-white/10 backdrop-blur-sm text-white px-6 font-medium"
 					>
@@ -32,14 +35,14 @@ export default function WebsiteCard() {
 			</div>
 			<div className="p-4 text-left">
 				<h3 className="text-base font-semibold text-gray-800">
-					Mẫu Website Dịch Vụ Du Lịch Đơn Giản - Hiện Đại
+					{name || "Tên: N/A"}
 				</h3>
 				<div className="flex gap-2 mt-2">
-					<span className="text-xs bg-gray-200 px-2 py-1 rounded text-gray-600">
-						BOOKING - ĐẶT VÉ
+					<span className="text-xs bg-blue px-2 py-1 rounded text-white">
+						{code || "Mã: N/A"}
 					</span>
 					<span className="text-xs bg-gray-200 px-2 py-1 rounded text-gray-600">
-						DU LỊCH
+						{category?.name ? category.name.split(' ').slice(0, 4).join(' ') + (category.name.split(' ').length > 4 ? ' ...' : '') : "Danh mục: N/A"}
 					</span>
 				</div>
 			</div>

@@ -1,9 +1,13 @@
-import React from 'react';
+import React, {useState} from 'react';
 import './BannerSection.scss';
 import {Icon} from "@iconify/react";
 import {Particles} from "@components/magicui/particles.jsx";
+import ConsultationPopup from "@components/Consultation/consultationPopup.jsx";
+import {useNavigate} from "react-router";
 
 const BannerSection = () => {
+	const [open, setOpen] = useState(false);
+	const navigate = useNavigate();
 	return (
 		<section className="banner-section relative max-w-full flex items-center justify-center overflow-hidden"
 		         style={{
@@ -29,10 +33,20 @@ const BannerSection = () => {
 							Chuyên thiết kế web Landing Page giúp bạn xây dựng thương hiệu và tăng doanh số bán hàng online hiệu quả.
 						</p>
 						<div className="mt-6 flex items-center justify-start gap-6">
-							<button className="bg-white px-6 py-2 max-h-[39px] min-h-[39px] w-auto text-black rounded-full hover:bg-white cursor-pointer">
+							<button
+								onClick={() => {
+									setOpen(!open);
+								}}
+								className="bg-white px-6 py-2 max-h-[39px] min-h-[39px] w-auto text-black rounded-full hover:bg-white cursor-pointer">
 								ĐĂNG KÝ TƯ VẤN MIỄN PHÍ
 							</button>
-							<button className="flex items-center max-h-[39px] gap-1 bg-transparent w-auto border-white text-white px-6 py-2 rounded-full hover:bg-white hover:text-black cursor-pointer">
+							<button
+								onClick={
+									() => {
+										navigate('/giao-dien');
+									}
+								}
+								className="flex items-center max-h-[39px] gap-1 bg-transparent w-auto border-white text-white px-6 py-2 rounded-full hover:bg-white hover:text-black cursor-pointer">
 								XEM GIAO DIỆN
 								<Icon
 									icon="mingcute:arrow-right-fill"
@@ -57,6 +71,7 @@ const BannerSection = () => {
 					{/*</div>*/}
 				</div>
 			</div>
+			<ConsultationPopup open={open} setOpen={setOpen}/>
 		</section>
 	);
 };

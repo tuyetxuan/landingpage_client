@@ -5,6 +5,30 @@ $font-family-base: "Inter", sans-serif;
 $heading-font-weight: 600;
 
 
+.post_news-left {
+  position: sticky;
+  top: 140px;
+  z-index: 10;
+  background-color: #fff;
+  padding: 10px;
+  border-radius: 12px;
+}
+
+.post_news-content {
+  position: relative;
+}
+
+
+.post_news-left .ant-collapse {
+  background-color: transparent;
+}
+
+.post_news-left a {
+  display: block;
+  transition: color 0.3s;
+}
+
+
 .post_news * {
   font-family: "Inter Tight", sans-serif !important;
 }

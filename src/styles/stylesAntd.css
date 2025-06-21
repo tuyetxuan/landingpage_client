@@ -5,5 +5,8 @@
 }
 
 @layer components {
-
+    .ant-form-item-explain-error {
+        color: #ff4d4f !important;
+        text-align: right !important;
+    }
 }
