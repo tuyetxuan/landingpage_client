@@ -32,7 +32,7 @@ const NewsCard = ({article}) => {
 			{/* Image */}
 			<div className="h-48 w-full overflow-hidden">
 				<img
-					src={thumbnail_url || 'https://via.placeholder.com/400x300'}
+					src={thumbnail_url || 'https://placehold.co/600x400'}
 					alt={title || 'Tiêu đề bài viết'}
 					className="w-full h-full object-cover object-center"
 				/>
