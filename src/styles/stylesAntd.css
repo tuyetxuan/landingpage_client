@@ -9,4 +9,26 @@
         color: #ff4d4f !important;
         text-align: right !important;
     }
+
+    .slick-slider .slick-next {
+        width: 30px !important;
+        height: 30px !important;
+        margin-right: 20px !important;
+    }
+
+    .slick-slider .slick-next:after {
+        width: 100% !important;
+        height: 100% !important;
+    }
+
+    .slick-slider .slick-prev {
+        width: 30px !important;
+        height: 30px !important;
+        margin-left: 20px !important;
+    }
+
+    .slick-slider .slick-prev:after {
+        width: 100% !important;
+        height: 100% !important;
+    }
 }

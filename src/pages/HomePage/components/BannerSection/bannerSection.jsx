@@ -1,23 +1,66 @@
 import React, {useState} from 'react';
 import './BannerSection.scss';
-import {Icon} from "@iconify/react";
-import {Particles} from "@components/magicui/particles.jsx";
 import ConsultationPopup from "@components/Consultation/consultationPopup.jsx";
 import {useNavigate} from "react-router";
+import {Icon} from "@iconify/react";
+import {Carousel} from "antd";
+import {useGetBannersQuery} from "@features/banner/bannerSlice.js";
+import {Particles} from "@components/magicui/particles.jsx";
+
 
 const BannerSection = () => {
 	const [open, setOpen] = useState(false);
 	const navigate = useNavigate();
+	const {data: banners = [], isLoading: isBannersLoading, error: bannersError} = useGetBannersQuery(
+		undefined
+		, {
+			refetchOnMountOrArgChange: true,
+		});
+	
 	return (
 		<section className="banner-section relative max-w-full flex items-center justify-center overflow-hidden"
 		         style={{
-			         backgroundImage: 'url(/hero-section-bg.svg)',
 			         backgroundSize: 'cover',
 			         backgroundPosition: 'center',
 			         backgroundRepeat: 'no-repeat',
 			         maxHeight: '600px',
 			         minHeight: '600px'
 		         }}>
+			<div className="w-full h-[600px] relative">
+				<Carousel
+					dots={false}
+					autoplay
+					autoplaySpeed={3000}
+					style={{height: "600px"}}
+					arrows>
+					{
+						banners && banners.length > 0 ? (
+							banners.map((banner, index) => (
+								<img
+									key={index}
+									className="banner-bg inset-0 bg-cover bg-center bg-no-repeat"
+									style={{
+										maxHeight: '600px',
+										minHeight: '600px'
+									}}
+									src={banner?.image_url || "/hero-section-bg.svg"}
+									alt={`Banner background ${banner.title} ${index + 1}`}
+								/>
+							))
+						) : (
+							<img
+								className="banner-bg inset-0 bg-cover bg-center bg-no-repeat"
+								style={{
+									maxHeight: '600px',
+									minHeight: '600px'
+								}}
+								src="/hero-section-bg.svg"
+								alt="Default banner background"
+							/>
+						)
+					}
+				</Carousel>
+			</div>
 			<Particles
 				className="absolute inset-0 z-0"
 				quantity={900}

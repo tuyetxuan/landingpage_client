@@ -6,6 +6,7 @@ import {webSettings} from "@features/services/webSettingsSlice.js";
 import {serviceCategories} from "@features/services/serviceCategoriesSlice.js";
 import {articleCategories} from "@features/articles/articleCategoriesSlice.js";
 import {articles} from "@features/articles/articleSlice.js";
+import {banners} from "@features/banner/bannerSlice.js";
 import {sunmitContact} from "@features/contacts/submitContactSlice.js";
 
 
@@ -16,7 +17,9 @@ export const store = configureStore({
 		[serviceCategories.reducerPath]: serviceCategories.reducer,
 		[articleCategories.reducerPath]: articleCategories.reducer,
 		[articles.reducerPath]: articles.reducer,
-		[sunmitContact.reducerPath]: sunmitContact.reducer
+		[sunmitContact.reducerPath]: sunmitContact.reducer,
+		[banners.reducerPath]: banners.reducer
+		
 	},
 	middleware: (getDefaultMiddleware) => {
 		return getDefaultMiddleware()
@@ -25,7 +28,8 @@ export const store = configureStore({
 			.concat(serviceCategories.middleware)
 			.concat(articleCategories.middleware)
 			.concat(articles.middleware)
-			.concat(sunmitContact.middleware);
+			.concat(sunmitContact.middleware)
+			.concat(banners.middleware);
 	}
 });
 
